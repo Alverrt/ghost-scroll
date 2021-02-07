@@ -1,0 +1,22 @@
+{
+  "name": "ghost-scroll",
+  "version": "1.0.0",
+  "description": "Make your bots scroll behaviour like real human.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alverrt/ghost-scroll.git"
+  },
+  "author": "Alverrt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alverrt/ghost-scroll/issues"
+  },
+  "homepage": "https://github.com/Alverrt/ghost-scroll#readme",
+  "dependencies": {
+    "bezier-js": "^4.0.3"
+  }
+}
