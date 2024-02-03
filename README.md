@@ -1,6 +1,6 @@
-# humanScroll Function Documentation
+# humanScroll Documentation
 
-The `humanScroll` function is designed to simulate human-like scrolling behavior on a web page using puppeteer. It includes a combination of smooth and random scrolling movements to mimic natural user behavior.
+The `humanScroll` is designed to simulate human-like scrolling behavior on a web page using puppeteer. It includes a combination of smooth and random scrolling movements to mimic natural user behavior.
 
 ## Prerequisites
 
