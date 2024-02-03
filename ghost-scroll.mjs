@@ -6,12 +6,13 @@ const randomInteger = async (min, max) => Math.floor(Math.random() * (max - min 
 
 export const humanScroll = async (page) => {
   const PIXELPERWHEEL = 100;
+  let direction = 1;
 
   const scroller = async (pixel) => {
     // eslint-disable-next-line no-shadow
-    await page.evaluate((pixel) => {
-      window.scrollBy(0, pixel);
-    }, pixel);
+    await page.evaluate((pixel, direction) => {
+      window.scrollBy(0, direction * pixel);
+    }, pixel, direction);
   };
 
   const decideScrollLength = (wheelCount) => {
@@ -83,28 +84,31 @@ export const humanScroll = async (page) => {
 
   const oneWheelScroller = async () => {
     await page.evaluate(
-      () => {
+      (direction) => {
         const oneWheelSmoothScrolls = [1, 5, 7, 11, 13, 14, 14, 13, 10, 7, 4, 1];
         let i = 0;
         setInterval(() => {
-          window.scrollBy(0, oneWheelSmoothScrolls[i]);
+          window.scrollBy(0, direction * oneWheelSmoothScrolls[i]);
           i += 1;
           if (i === (oneWheelSmoothScrolls.length - 1)) {
             clearInterval();
           }
         }, 50);
       },
+      direction
     );
   };
 
   const actions = {
-    scroll: async (wheelCount) => {
+    scroll: async (wheelCount, where = 'down') => {
+      direction = ('down' === where) ? 1 : -1;
       if (wheelCount === 1) {
+        console.log('one wheel:', wheelCount, direction)
         await oneWheelScroller();
         return;
       }
 
-      const middleScrollCount = await midScrolls(wheelCount);
+      const middleScrollCount = await midScrolls(wheelCount, direction);
     },
   };
   return actions;
